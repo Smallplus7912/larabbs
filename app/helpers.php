@@ -29,3 +29,8 @@ function get_db_config()
         ];
     }
 }
+//_header.blade.php,active的辅助函数，作用：减少代码重复
+function category_nav_active($category_id)
+{
+    return active_class((if_route('categories.show') && if_route_param('category', $category_id)));
+}

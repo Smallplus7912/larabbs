@@ -16,9 +16,10 @@ class SlugTranslateHandler
 
         // 初始化配置信息
         $api = 'http://api.fanyi.baidu.com/api/trans/vip/translate?';
-        $appid = config('services.baidu_translate.appid');
-        $key = config('services.baidu_translate.key');
+        $appid = '20221026001418430';
+        $key = 'OH4GmiJRzGkMLUeMT5Zv';
         $salt = time();
+        //dd($salt);
 
         // 如果没有配置百度翻译，自动使用兼容的拼音方案
         if (empty($appid) || empty($key)) {
@@ -45,6 +46,8 @@ class SlugTranslateHandler
 
         $result = json_decode($response->getBody(), true);
 
+
+
         /**
         获取结果，如果请求成功，dd($result) 结果如下：
 
@@ -66,6 +69,7 @@ class SlugTranslateHandler
             return Str::slug($result['trans_result'][0]['dst']);
         } else {
             // 如果百度翻译没有结果，使用拼音作为后备计划。
+
             return $this->pinyin($text);
         }
     }
@@ -73,5 +77,6 @@ class SlugTranslateHandler
     public function pinyin($text)
     {
         return Str::slug(app(Pinyin::class)->permalink($text));
+
     }
 }

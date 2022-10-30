@@ -30,6 +30,7 @@ class SlugTranslateHandler
         // http://api.fanyi.baidu.com/api/trans/product/apidoc
         // appid+q+salt+密钥 的MD5值
         $sign = md5($appid. $text . $salt . $key);
+        //dd($sign);
 
         // 构建请求参数
         $query = http_build_query([
@@ -43,8 +44,10 @@ class SlugTranslateHandler
 
         // 发送 HTTP Get 请求
         $response = $http->get($api.$query);
+        //dd($response);
 
         $result = json_decode($response->getBody(), true);
+        //dd($result);
 
 
 

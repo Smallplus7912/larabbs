@@ -62,10 +62,10 @@ class Topic extends Model
         return $this->hasMany(Reply::class);
     }
 
-    //回复数更新方法（增加评论，删除评论）
     public function updateReplyCount()
     {
         $this->reply_count = $this->replies->count();
         $this->save();
     }
+
 }

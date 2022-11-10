@@ -23,6 +23,8 @@ class User extends Authenticatable implements MustVerifyEmail
 
     //加载hasroles
     use HasRoles;
+    //边缘活跃用户
+    use Traits\ActiveUserHelper;
 
     public function notify($instance)
     {

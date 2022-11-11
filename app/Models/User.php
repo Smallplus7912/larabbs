@@ -26,6 +26,9 @@ class User extends Authenticatable implements MustVerifyEmail
     //边缘活跃用户
     use Traits\ActiveUserHelper;
 
+    //最后登录时间
+    use Traits\LastActivedAtHelper;
+
     public function notify($instance)
     {
         // 如果要通知的人是当前用户，就不必通知了！
